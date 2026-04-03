@@ -538,6 +538,72 @@ textarea {
   }
 }
 
+/* ---------- About Page ---------- */
+
+.about-page {
+  max-width: 900px;
+}
+
+.about-intro {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.about-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-left: 4px solid #009688;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+}
+
+.about-card h3 {
+  font-size: 0.95rem;
+  color: #009688;
+  margin-bottom: 0.4rem;
+}
+
+.about-card p {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.about-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #009688;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.about-link:hover {
+  text-decoration: underline;
+}
+
+.about-note {
+  background: #e0f2f1;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  font-size: 0.85rem;
+  color: #00695c;
+  line-height: 1.6;
+}
+
+.about-note a {
+  color: #00695c;
+  font-weight: 600;
+}
+
 @media (max-width: 1024px) {
   main {
     padding: 1rem;
@@ -549,6 +615,10 @@ textarea {
 
   .filter-row {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
   }
 
   header h1 {

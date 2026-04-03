@@ -10,7 +10,8 @@
   <header>
     <h1>EcoPlate Analyzer</h1>
     <nav>
-      <button class="tab-btn active" data-tab="load">Load Data</button>
+      <button class="tab-btn active" data-tab="about">About</button>
+      <button class="tab-btn" data-tab="load">Load Data</button>
       <button class="tab-btn" data-tab="edit">Edit</button>
       <button class="tab-btn" data-tab="filter">Filter</button>
       <button class="tab-btn" data-tab="tests">Tests</button>
@@ -18,7 +19,109 @@
   </header>
 
   <main>
-    <section id="tab-load" class="tab-content active">
+    <section id="tab-about" class="tab-content active">
+      <div class="about-page">
+        <h2 class="section-heading">EcoPlate Analyzer</h2>
+        <p class="about-intro">
+          A browser-based tool for analyzing <strong>Biolog EcoPlate</strong> data — the standard 96-well microplate
+          used in Community-Level Physiological Profiling (CLPP) of microbial communities. Load experiment data,
+          annotate it with metadata, filter across multiple dimensions, and run statistical tests — all without
+          installing any software.
+        </p>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <h3>Load &amp; Visualize</h3>
+            <p>
+              Import experiment data from the remote data repository. View the full 8&times;12 EcoPlate grid
+              with optical density values displayed across all 31 carbon sources and 3 replicate sections.
+              Annotate each section with bacteria, stressor, concentration, time, and repetition metadata.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <h3>Edit Records</h3>
+            <p>
+              Browse, modify, and delete loaded records. Update metadata fields or remove duplicates.
+              All changes are reflected immediately across the filter and tests tabs.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <h3>Multi-Dimensional Filtering</h3>
+            <p>
+              Filter records by any combination of bacteria, stressor, concentration, time, blank status,
+              and repetition. Export filtered results to CSV for further analysis in external tools.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <h3>Statistical Tests &amp; Charts</h3>
+            <p>
+              Run AWCD (Average Well Color Development), SAWCD (Substrate Average Well Color Development),
+              Shannon Diversity Index, and Shannon Evenness calculations. Visualize results with grouped bar
+              and stacked percentage charts. Export charts as PNG or results as CSV.
+            </p>
+          </div>
+        </div>
+
+        <h2 class="section-heading mt-2">Where to Get EcoPlate Data</h2>
+        <p class="about-intro">
+          If you don't have your own experiment data, several public repositories host open EcoPlate datasets
+          that you can download and convert for use with this analyzer.
+        </p>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <h3>Figshare — Lake Zurich EcoPlate</h3>
+            <p>
+              OD measurements of carbon source consumption in EcoPlates inoculated with water from Lake Zurich.
+              Three sampling campaigns (Sep–Nov 2021) with OD595, corrected OD, and binary consumption data.
+            </p>
+            <a href="https://figshare.com/articles/dataset/EcoPlate_data/25399807" target="_blank" class="about-link">View dataset</a>
+          </div>
+
+          <div class="about-card">
+            <h3>Figshare — Gull Colony Soil Samples</h3>
+            <p>
+              Raw EcoPlate readouts from soil samples taken at a mixed gull colony, with PCA analysis scripts.
+              Measured using SPECTROstar Nano microplate reader.
+            </p>
+            <a href="https://figshare.com/articles/dataset/Data_and_scripts_for_PCA_analysis_of_BIOLOG_Ecoplate_data_from_soil_samples_taken_at_mixed_gull_colony/22491625" target="_blank" class="about-link">View dataset</a>
+          </div>
+
+          <div class="about-card">
+            <h3>Figshare — Substrate Utilization</h3>
+            <p>
+              Per-substrate results showing the number of isolates that utilized each EcoPlate carbon source,
+              with Bloomberg K-statistics for phylogenetic analysis.
+            </p>
+            <a href="https://figshare.com/articles/dataset/Results_for_each_Biolog_EcoPlate_substrate_including_the_number_of_isolates_that_utilized_each_substrate_and_Bloomberg_K-statistics_/4803874/1" target="_blank" class="about-link">View dataset</a>
+          </div>
+
+          <div class="about-card">
+            <h3>Data.gov — Stones River Soil CLPP</h3>
+            <p>
+              Shannon diversity index data from Community-Level Physiological Profiling of soil samples
+              from limestone cedar glades at Stones River National Battlefield, Tennessee.
+            </p>
+            <a href="https://catalog.data.gov/dataset/shannon-diversity-index-data-based-on-community-level-physiological-profiling-clpp-of-soil" target="_blank" class="about-link">View dataset</a>
+          </div>
+        </div>
+
+        <div class="about-note mt-2">
+          <p>
+            <strong>Data format:</strong> This analyzer expects experiment data as XLSX files with two wavelength
+            readings (590 nm and 720 nm) in an 8&times;12 grid layout. The difference (OD590 &minus; OD720) is
+            computed and split into three 8&times;4 matrices corresponding to the three EcoPlate replicate sections.
+            See the <a href="https://github.com/damian0o/EcoPlate-Data" target="_blank">EcoPlate-Data repository</a>
+            for the conversion pipeline and expected file structure.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-load" class="tab-content">
       <div id="file-selector"></div>
       <div id="ecoplate-grid"></div>
       <div id="metadata-form"></div>
