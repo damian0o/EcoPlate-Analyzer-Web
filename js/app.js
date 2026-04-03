@@ -3,11 +3,13 @@
 
 import { initLoadTab } from './tabs/load-tab.js';
 import { initEditTab, refreshEditDropdown } from './tabs/edit-tab.js';
+import { initFilterTab, refreshFilterLists } from './tabs/filter-tab.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   initTabs();
   initLoadTab();
   initEditTab();
+  initFilterTab();
 });
 
 /* ---------- Tab Navigation ---------- */
@@ -29,6 +31,11 @@ function initTabs() {
       // Refresh edit tab dropdown when it becomes visible
       if (target === "edit") {
         refreshEditDropdown();
+      }
+
+      // Refresh filter lists when filter tab becomes visible
+      if (target === "filter") {
+        refreshFilterLists();
       }
     });
   });
