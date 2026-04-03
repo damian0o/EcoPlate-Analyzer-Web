@@ -9,5 +9,6 @@ export async function fetchIndex() {
 export async function fetchExperiment(jsonFilename) {
   const res = await fetch(`${DATA_BASE_URL}/${jsonFilename}`);
   if (!res.ok) throw new Error(`Failed to fetch ${jsonFilename}`);
-  return res.json();
+  const text = await res.text();
+  return JSON.parse(text.replace(/\bNaN\b/g, 'null'));
 }
