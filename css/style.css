@@ -610,9 +610,65 @@ textarea {
   height: 100%;
 }
 
+.data-card-meta {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.75rem 1.25rem 0;
+}
+
+.popularity-badge,
+.sentiment-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  letter-spacing: 0.02em;
+}
+
+.popularity-badge.high {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.popularity-badge.medium {
+  background: #e0f2fe;
+  color: #075985;
+}
+
+.popularity-badge.low {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.sentiment-badge.positive {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.sentiment-badge.neutral {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.data-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  padding: 0.25rem 1.25rem 0.5rem;
+}
+
+.data-card-tags .tag {
+  display: inline-block;
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 10px;
+}
+
 .about-link {
   display: inline-block;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   font-size: 0.85rem;
   color: #009688;
   font-weight: 500;

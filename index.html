@@ -72,6 +72,35 @@
         </p>
 
         <div class="about-grid">
+          <!-- 1. JaLTER Japan Forest — Largest, most comprehensive -->
+          <div class="about-card data-card">
+            <div class="data-card-banner" style="background:linear-gradient(135deg,#d62828,#f77f00)">
+              <svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 50 L25 30 L35 50Z" fill="rgba(255,255,255,0.15)"/>
+                <path d="M30 50 L45 20 L60 50Z" fill="rgba(255,255,255,0.2)"/>
+                <path d="M50 50 L60 35 L70 50Z" fill="rgba(255,255,255,0.12)"/>
+                <circle cx="95" cy="18" r="10" fill="rgba(255,255,255,0.15)"/>
+                <text x="95" y="22" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="7" font-family="sans-serif">114 plots</text>
+                <text x="45" y="12" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8" font-family="sans-serif">Japan Forests</text>
+              </svg>
+            </div>
+            <div class="data-card-meta">
+              <span class="popularity-badge high">Highly Cited</span>
+              <span class="sentiment-badge positive">Excellent</span>
+            </div>
+            <h3>JaLTER — 74 Forest Sites, Japan</h3>
+            <p>
+              Largest open EcoPlate dataset: 74 planted forest sites (114 plots) across Japan from cool-temperate
+              to subtropical. Raw absorbance for all 31 substrates plus soil properties (pH, C, N, water content).
+              Published 2025 in Ecological Research.
+            </p>
+            <div class="data-card-tags">
+              <span class="tag">soil</span><span class="tag">forest</span><span class="tag">raw-OD</span><span class="tag">large-scale</span><span class="tag">soil-properties</span>
+            </div>
+            <a href="https://jalter.diasjp.net/data/ERDP-2024-08" target="_blank" class="about-link">View dataset</a>
+          </div>
+
+          <!-- 2. Lake Zurich -->
           <div class="about-card data-card">
             <div class="data-card-banner" style="background:linear-gradient(135deg,#0077b6,#00b4d8)">
               <svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,75 +108,85 @@
                 <path d="M0 50 Q20 40 40 45 Q60 50 80 42 Q100 34 120 40 L120 60 L0 60Z" fill="rgba(255,255,255,0.1)"/>
                 <circle cx="30" cy="20" r="8" fill="rgba(255,255,255,0.3)"/>
                 <path d="M30 28 L30 38 M26 34 Q30 40 34 34" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none"/>
-                <circle cx="70" cy="15" r="3" fill="rgba(255,255,255,0.2)"/>
-                <circle cx="90" cy="22" r="2" fill="rgba(255,255,255,0.15)"/>
-                <text x="60" y="18" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8" font-family="sans-serif">Lake Zurich</text>
+                <text x="75" y="18" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8" font-family="sans-serif">Lake Zurich</text>
               </svg>
+            </div>
+            <div class="data-card-meta">
+              <span class="popularity-badge high">Highly Cited</span>
+              <span class="sentiment-badge positive">Well Structured</span>
             </div>
             <h3>Figshare — Lake Zurich EcoPlate</h3>
             <p>
               OD measurements of carbon source consumption in EcoPlates inoculated with water from Lake Zurich.
               Three sampling campaigns (Sep–Nov 2021) with OD595, corrected OD, and binary consumption data.
+              Used in cyanobacterial bloom dispersal research.
             </p>
+            <div class="data-card-tags">
+              <span class="tag">freshwater</span><span class="tag">raw-OD</span><span class="tag">time-series</span><span class="tag">corrected</span><span class="tag">binary</span>
+            </div>
             <a href="https://figshare.com/articles/dataset/EcoPlate_data/25399807" target="_blank" class="about-link">View dataset</a>
           </div>
 
-          <div class="about-card data-card">
-            <div class="data-card-banner" style="background:linear-gradient(135deg,#588157,#a3b18a)">
-              <svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="10" y="40" width="100" height="20" rx="2" fill="rgba(255,255,255,0.1)"/>
-                <path d="M20 40 Q20 25 30 20 Q40 15 35 28 Q38 18 45 22 Q50 12 48 25 Q55 20 52 30 Q58 25 55 35 L20 40Z" fill="rgba(255,255,255,0.2)"/>
-                <path d="M60 40 Q62 30 68 26 Q72 22 70 30 Q75 24 73 32 Q78 28 76 36 L60 40Z" fill="rgba(255,255,255,0.15)"/>
-                <circle cx="25" cy="48" r="1.5" fill="rgba(255,255,255,0.3)"/>
-                <circle cx="40" cy="46" r="1" fill="rgba(255,255,255,0.25)"/>
-                <circle cx="55" cy="49" r="1.5" fill="rgba(255,255,255,0.3)"/>
-                <circle cx="70" cy="47" r="1" fill="rgba(255,255,255,0.2)"/>
-                <circle cx="85" cy="45" r="1.5" fill="rgba(255,255,255,0.3)"/>
-                <circle cx="95" cy="48" r="1" fill="rgba(255,255,255,0.25)"/>
-                <text x="80" y="18" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8" font-family="sans-serif">Soil Samples</text>
-              </svg>
-            </div>
-            <h3>Figshare — Gull Colony Soil Samples</h3>
-            <p>
-              Raw EcoPlate readouts from soil samples taken at a mixed gull colony, with PCA analysis scripts.
-              Measured using SPECTROstar Nano microplate reader.
-            </p>
-            <a href="https://figshare.com/articles/dataset/Data_and_scripts_for_PCA_analysis_of_BIOLOG_Ecoplate_data_from_soil_samples_taken_at_mixed_gull_colony/22491625" target="_blank" class="about-link">View dataset</a>
-          </div>
-
+          <!-- 3. Nanoparticles PMC -->
           <div class="about-card data-card">
             <div class="data-card-banner" style="background:linear-gradient(135deg,#7b2cbf,#c77dff)">
               <svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g opacity="0.25">
-                  <rect x="8" y="8" width="8" height="8" rx="2" fill="white"/><rect x="19" y="8" width="8" height="8" rx="2" fill="white"/>
-                  <rect x="30" y="8" width="8" height="8" rx="2" fill="white"/><rect x="41" y="8" width="8" height="8" rx="2" fill="white"/>
-                  <rect x="8" y="19" width="8" height="8" rx="2" fill="white"/><rect x="19" y="19" width="8" height="8" rx="2" fill="white"/>
-                  <rect x="30" y="19" width="8" height="8" rx="2" fill="white"/><rect x="41" y="19" width="8" height="8" rx="2" fill="white"/>
-                  <rect x="8" y="30" width="8" height="8" rx="2" fill="white"/><rect x="19" y="30" width="8" height="8" rx="2" fill="white"/>
-                  <rect x="30" y="30" width="8" height="8" rx="2" fill="white"/><rect x="41" y="30" width="8" height="8" rx="2" fill="white"/>
-                  <rect x="8" y="41" width="8" height="8" rx="2" fill="white"/><rect x="19" y="41" width="8" height="8" rx="2" fill="white"/>
-                  <rect x="30" y="41" width="8" height="8" rx="2" fill="white"/><rect x="41" y="41" width="8" height="8" rx="2" fill="white"/>
-                </g>
-                <g opacity="0.5">
-                  <rect x="12" y="10" width="4" height="4" rx="1" fill="white" opacity="0.8"/>
-                  <rect x="23" y="21" width="4" height="4" rx="1" fill="white" opacity="0.6"/>
-                  <rect x="34" y="10" width="4" height="4" rx="1" fill="white" opacity="0.9"/>
-                  <rect x="12" y="32" width="4" height="4" rx="1" fill="white" opacity="0.4"/>
-                  <rect x="45" y="43" width="4" height="4" rx="1" fill="white" opacity="0.7"/>
-                  <rect x="34" y="32" width="4" height="4" rx="1" fill="white" opacity="0.5"/>
-                </g>
-                <text x="85" y="25" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7" font-family="sans-serif">96-well</text>
-                <text x="85" y="38" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7" font-family="sans-serif">Substrates</text>
+                <circle cx="25" cy="30" r="4" fill="rgba(255,255,255,0.3)"/>
+                <circle cx="25" cy="30" r="8" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                <circle cx="55" cy="25" r="3" fill="rgba(255,255,255,0.25)"/>
+                <circle cx="55" cy="25" r="6" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <circle cx="42" cy="42" r="2.5" fill="rgba(255,255,255,0.2)"/>
+                <circle cx="42" cy="42" r="5" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <text x="90" y="25" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7" font-family="sans-serif">ZnO &amp; TiO2</text>
+                <text x="90" y="38" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="7" font-family="sans-serif">Nanoparticles</text>
               </svg>
             </div>
-            <h3>Figshare — Substrate Utilization</h3>
+            <div class="data-card-meta">
+              <span class="popularity-badge medium">Cited</span>
+              <span class="sentiment-badge positive">Peer-Reviewed</span>
+            </div>
+            <h3>MDPI — Metal Oxide Nanoparticles Effect</h3>
             <p>
-              Per-substrate results showing the number of isolates that utilized each EcoPlate carbon source,
-              with Bloomberg K-statistics for phylogenetic analysis.
+              EcoPlate data assessing ZnO and TiO2 nanoparticle effects on freshwater microbial communities.
+              Supplementary tables with AWCD, Shannon, Simpson, Gini indices at multiple concentrations (0.8–100 mg/L).
             </p>
-            <a href="https://figshare.com/articles/dataset/Results_for_each_Biolog_EcoPlate_substrate_including_the_number_of_isolates_that_utilized_each_substrate_and_Bloomberg_K-statistics_/4803874/1" target="_blank" class="about-link">View dataset</a>
+            <div class="data-card-tags">
+              <span class="tag">freshwater</span><span class="tag">ecotoxicology</span><span class="tag">nanoparticles</span><span class="tag">diversity-indices</span><span class="tag">supplementary</span>
+            </div>
+            <a href="https://www.mdpi.com/2079-4991/11/7/1777" target="_blank" class="about-link">View article &amp; data</a>
           </div>
 
+          <!-- 4. Mendeley Wetland -->
+          <div class="about-card data-card">
+            <div class="data-card-banner" style="background:linear-gradient(135deg,#2d6a4f,#52b788)">
+              <svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 40 Q10 35 20 38 Q30 41 40 36 Q50 31 60 34 Q70 37 80 32 Q90 27 100 30 Q110 33 120 28 L120 60 L0 60Z" fill="rgba(255,255,255,0.12)"/>
+                <line x1="15" y1="30" x2="15" y2="40" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                <line x1="13" y1="28" x2="15" y2="30" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                <line x1="17" y1="28" x2="15" y2="30" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                <line x1="45" y1="26" x2="45" y2="36" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                <line x1="43" y1="24" x2="45" y2="26" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                <line x1="47" y1="24" x2="45" y2="26" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                <text x="85" y="18" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8" font-family="sans-serif">Wetland</text>
+                <text x="85" y="30" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="7" font-family="sans-serif">Mesocosms</text>
+              </svg>
+            </div>
+            <div class="data-card-meta">
+              <span class="popularity-badge medium">Cited</span>
+              <span class="sentiment-badge neutral">Specialized</span>
+            </div>
+            <h3>Mendeley — Wetland Microbial Communities</h3>
+            <p>
+              Raw EcoPlate data from water, rhizosphere, and rhizoplane microbial communities in lab-scale
+              wetland mesocosms. Includes DGGE analysis and water chemistry data. Phosphorus loading effects.
+            </p>
+            <div class="data-card-tags">
+              <span class="tag">wetland</span><span class="tag">rhizosphere</span><span class="tag">raw-OD</span><span class="tag">water-chemistry</span><span class="tag">mesocosm</span>
+            </div>
+            <a href="https://data.mendeley.com/datasets/vt4rbwbzb2/1" target="_blank" class="about-link">View dataset</a>
+          </div>
+
+          <!-- 5. Stones River USGS -->
           <div class="about-card data-card">
             <div class="data-card-banner" style="background:linear-gradient(135deg,#bc6c25,#dda15e)">
               <svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -157,15 +196,109 @@
                 <circle cx="40" cy="38" r="2" fill="rgba(255,255,255,0.6)"/>
                 <circle cx="70" cy="31" r="2" fill="rgba(255,255,255,0.6)"/>
                 <circle cx="100" cy="24" r="2" fill="rgba(255,255,255,0.6)"/>
-                <text x="60" y="54" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="7" font-family="sans-serif">Shannon Diversity Index</text>
+                <text x="60" y="54" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="7" font-family="sans-serif">AWCD + Shannon Index</text>
               </svg>
             </div>
-            <h3>Data.gov — Stones River Soil CLPP</h3>
+            <div class="data-card-meta">
+              <span class="popularity-badge medium">Cited</span>
+              <span class="sentiment-badge positive">Government</span>
+            </div>
+            <h3>USGS — Stones River Soil CLPP</h3>
             <p>
-              Shannon diversity index data from Community-Level Physiological Profiling of soil samples
-              from limestone cedar glades at Stones River National Battlefield, Tennessee.
+              AWCD and Shannon diversity data from 120 sampling points across 12 limestone cedar glades at
+              Stones River National Battlefield, Tennessee. Seasonal sampling (2012–2013). GIS shapefile format
+              with spatial coordinates.
             </p>
-            <a href="https://catalog.data.gov/dataset/shannon-diversity-index-data-based-on-community-level-physiological-profiling-clpp-of-soil" target="_blank" class="about-link">View dataset</a>
+            <div class="data-card-tags">
+              <span class="tag">soil</span><span class="tag">AWCD</span><span class="tag">Shannon</span><span class="tag">GIS</span><span class="tag">seasonal</span><span class="tag">government</span>
+            </div>
+            <a href="https://www.sciencebase.gov/catalog/item/55afcde3e4b09a3b01b51e2d" target="_blank" class="about-link">View dataset</a>
+          </div>
+
+          <!-- 6. Gull Colony -->
+          <div class="about-card data-card">
+            <div class="data-card-banner" style="background:linear-gradient(135deg,#588157,#a3b18a)">
+              <svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="40" width="100" height="20" rx="2" fill="rgba(255,255,255,0.1)"/>
+                <path d="M20 40 Q20 25 30 20 Q40 15 35 28 Q38 18 45 22 Q50 12 48 25 Q55 20 52 30 Q58 25 55 35 L20 40Z" fill="rgba(255,255,255,0.2)"/>
+                <circle cx="25" cy="48" r="1.5" fill="rgba(255,255,255,0.3)"/>
+                <circle cx="55" cy="49" r="1.5" fill="rgba(255,255,255,0.3)"/>
+                <circle cx="85" cy="45" r="1.5" fill="rgba(255,255,255,0.3)"/>
+                <text x="85" y="18" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8" font-family="sans-serif">Texel Island</text>
+              </svg>
+            </div>
+            <div class="data-card-meta">
+              <span class="popularity-badge low">Niche</span>
+              <span class="sentiment-badge neutral">Academic</span>
+            </div>
+            <h3>Figshare — Gull Colony Soil Samples</h3>
+            <p>
+              Raw EcoPlate readouts from soil at a mixed gull colony on Texel Island. PCA analysis scripts included.
+              Seasonal sampling (Jun–Oct) across nest types. SPECTROstar Nano reader.
+            </p>
+            <div class="data-card-tags">
+              <span class="tag">soil</span><span class="tag">ecology</span><span class="tag">PCA-scripts</span><span class="tag">seasonal</span><span class="tag">raw-OD</span>
+            </div>
+            <a href="https://figshare.com/articles/dataset/Data_and_scripts_for_PCA_analysis_of_BIOLOG_Ecoplate_data_from_soil_samples_taken_at_mixed_gull_colony/22491625" target="_blank" class="about-link">View dataset</a>
+          </div>
+
+          <!-- 7. Substrate Utilization -->
+          <div class="about-card data-card">
+            <div class="data-card-banner" style="background:linear-gradient(135deg,#264653,#2a9d8f)">
+              <svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g opacity="0.25">
+                  <rect x="8" y="8" width="8" height="8" rx="2" fill="white"/><rect x="19" y="8" width="8" height="8" rx="2" fill="white"/>
+                  <rect x="30" y="8" width="8" height="8" rx="2" fill="white"/><rect x="41" y="8" width="8" height="8" rx="2" fill="white"/>
+                  <rect x="8" y="19" width="8" height="8" rx="2" fill="white"/><rect x="19" y="19" width="8" height="8" rx="2" fill="white"/>
+                  <rect x="30" y="19" width="8" height="8" rx="2" fill="white"/><rect x="41" y="19" width="8" height="8" rx="2" fill="white"/>
+                  <rect x="8" y="30" width="8" height="8" rx="2" fill="white"/><rect x="19" y="30" width="8" height="8" rx="2" fill="white"/>
+                  <rect x="30" y="30" width="8" height="8" rx="2" fill="white"/><rect x="41" y="30" width="8" height="8" rx="2" fill="white"/>
+                </g>
+                <text x="85" y="25" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7" font-family="sans-serif">96-well</text>
+                <text x="85" y="38" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="7" font-family="sans-serif">Substrates</text>
+              </svg>
+            </div>
+            <div class="data-card-meta">
+              <span class="popularity-badge low">Niche</span>
+              <span class="sentiment-badge neutral">Processed</span>
+            </div>
+            <h3>Figshare — Substrate Utilization</h3>
+            <p>
+              Per-substrate results showing the number of isolates that utilized each EcoPlate carbon source,
+              with Bloomberg K-statistics for phylogenetic analysis. Processed data, not raw OD.
+            </p>
+            <div class="data-card-tags">
+              <span class="tag">phylogenetics</span><span class="tag">isolates</span><span class="tag">K-statistics</span><span class="tag">processed</span>
+            </div>
+            <a href="https://figshare.com/articles/dataset/Results_for_each_Biolog_EcoPlate_substrate_including_the_number_of_isolates_that_utilized_each_substrate_and_Bloomberg_K-statistics_/4803874/1" target="_blank" class="about-link">View dataset</a>
+          </div>
+
+          <!-- 8. Forest Types & Antibiotics PMC -->
+          <div class="about-card data-card">
+            <div class="data-card-banner" style="background:linear-gradient(135deg,#457b9d,#a8dadc)">
+              <svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 50 L30 25 L40 50Z" fill="rgba(255,255,255,0.15)"/>
+                <path d="M45 50 L55 20 L65 50Z" fill="rgba(255,255,255,0.2)"/>
+                <path d="M70 50 L80 30 L90 50Z" fill="rgba(255,255,255,0.12)"/>
+                <rect x="95" y="25" width="12" height="20" rx="2" fill="rgba(255,255,255,0.15)"/>
+                <line x1="98" y1="30" x2="104" y2="30" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                <line x1="98" y1="34" x2="104" y2="34" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                <text x="60" y="12" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7" font-family="sans-serif">Forest + Antibiotics</text>
+              </svg>
+            </div>
+            <div class="data-card-meta">
+              <span class="popularity-badge medium">Recent</span>
+              <span class="sentiment-badge positive">Open Access</span>
+            </div>
+            <h3>PMC — Forest Types &amp; Antibiotics</h3>
+            <p>
+              Changes in soil microbial community profiles in relation to forest types and presence of antibiotics.
+              Published 2024, open access on PubMed Central. CLPP with all 31 carbon substrates.
+            </p>
+            <div class="data-card-tags">
+              <span class="tag">soil</span><span class="tag">forest</span><span class="tag">antibiotics</span><span class="tag">open-access</span><span class="tag">2024</span>
+            </div>
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11246321/" target="_blank" class="about-link">View article</a>
           </div>
         </div>
 
