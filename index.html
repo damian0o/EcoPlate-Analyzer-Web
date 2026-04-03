@@ -130,70 +130,156 @@
         <h2 class="section-heading mt-2">Learning Materials</h2>
         <p class="about-intro">
           From official protocols to statistical methods — resources for understanding EcoPlate analysis at every level.
+          <span class="text-muted">Scroll to browse all slides.</span>
         </p>
 
-        <div class="about-grid">
-          <div class="about-card">
-            <div class="learning-type">Official Protocol</div>
-            <h3>Biolog EcoPlate Instructions for Use</h3>
-            <p>
-              Official manufacturer documentation: plate layout, 31 carbon source map (A1–H4 &times; 3 replicates),
-              inoculation protocol, and reading instructions.
-            </p>
-            <a href="https://www.biolog.com/product-literature/ecoplate-instructions-for-use/" target="_blank" class="about-link">Read protocol</a>
-          </div>
+        <div class="carousel-wrapper">
+          <button class="carousel-btn carousel-prev" aria-label="Previous slide">&#8249;</button>
+          <div class="carousel-track" id="learning-carousel">
 
-          <div class="about-card">
-            <div class="learning-type">Lab Protocol</div>
-            <h3>CLPP Laboratory Protocol</h3>
-            <p>
-              Step-by-step community-level physiological profiling protocol from the Laboratory for Microbial Ecology.
-              Covers soil preparation, dilution series, inoculation, incubation, and plate reading.
-            </p>
-            <a href="https://www.biolog.com/wp-content/uploads/2023/10/Sigler_Von_Sigler_LEPR_Protocols_files_CLPP.pdf" target="_blank" class="about-link">Read protocol (PDF)</a>
-          </div>
+            <div class="carousel-slide" style="--accent:#009688">
+              <div class="slide-icon">
+                <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="32" height="36" rx="4" stroke="currentColor" stroke-width="2.5" fill="none"/><line x1="14" y1="14" x2="34" y2="14" stroke="currentColor" stroke-width="2" opacity="0.5"/><line x1="14" y1="20" x2="30" y2="20" stroke="currentColor" stroke-width="2" opacity="0.4"/><line x1="14" y1="26" x2="32" y2="26" stroke="currentColor" stroke-width="2" opacity="0.3"/><circle cx="18" cy="34" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+              </div>
+              <div class="slide-type">Official Protocol</div>
+              <h3>Biolog EcoPlate Instructions for Use</h3>
+              <p>Official manufacturer documentation: plate layout, 31 carbon source map, inoculation protocol, and reading instructions.</p>
+              <a href="https://www.biolog.com/product-literature/ecoplate-instructions-for-use/" target="_blank" class="slide-link">Read protocol</a>
+            </div>
 
-          <div class="about-card">
-            <div class="learning-type">Methodology Paper</div>
-            <h3>Standardized Method for Soil Functional Diversity</h3>
-            <p>
-              Detailed methodology for reproducible EcoPlate assays on soil. Addresses common pitfalls:
-              inoculum density, blank definition, incubation timing, and diversity index calculation.
-            </p>
-            <a href="https://www.mdpi.com/2076-3417/9/19/4035" target="_blank" class="about-link">Read paper (Open Access)</a>
-          </div>
+            <div class="carousel-slide" style="--accent:#7b2cbf">
+              <div class="slide-icon">
+                <svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="3" stroke="currentColor" stroke-width="2.5" fill="none"/><polygon points="20,18 20,32 32,25" fill="currentColor" opacity="0.4"/></svg>
+              </div>
+              <div class="slide-type">Webinar (2026)</div>
+              <h3>Microbial Mixology: Comparing Communities with EcoPlates</h3>
+              <p>Biolog's latest webinar: sample setup strategies, control recommendations, data interpretation techniques across diverse ecosystems.</p>
+              <a href="https://www.biolog.com/webinars/microbial-mixology-comparing-communities-across-a-range-of-ecosystems-with-ecoplates/" target="_blank" class="slide-link">Watch webinar</a>
+            </div>
 
-          <div class="about-card">
-            <div class="learning-type">Statistical Guide</div>
-            <h3>Statistical Recipe for EcoPlate Profiling</h3>
-            <p>
-              Key reference by Miki et al. (2018) on optimizing statistical power: data treatment for color
-              development curves, handling technical replicates, and incorporating substrate chemical structure
-              via fuzzy set theory.
-            </p>
-            <a href="https://link.springer.com/article/10.1007/s11284-017-1554-0" target="_blank" class="about-link">Read paper</a>
-          </div>
+            <div class="carousel-slide" style="--accent:#0077b6">
+              <div class="slide-icon">
+                <svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="3" stroke="currentColor" stroke-width="2.5" fill="none"/><polygon points="20,18 20,32 32,25" fill="currentColor" opacity="0.4"/></svg>
+              </div>
+              <div class="slide-type">Webinar (2024)</div>
+              <h3>EcoPlate Use Cases &amp; Odin Software</h3>
+              <p>30 years of EcoPlate research reviewed. Metabolic community profiling, kinetic data analysis, and Odin's community analysis features.</p>
+              <a href="https://www.biolog.com/webinars/studying-microbial-communities-a-review-of-ecoplate-use-cases-and-the-newest-community-analysis-features-in-odin-software/" target="_blank" class="slide-link">Watch webinar</a>
+            </div>
 
-          <div class="about-card">
-            <div class="learning-type">Review Article</div>
-            <h3>Biolog Plates Technique — Comprehensive Review</h3>
-            <p>
-              Review of the Biolog technique in ecological studies: history, applications in soil, water, wastewater,
-              compost, and industrial waste. Covers data analysis approaches including PCA, AWCD kinetics, and diversity indices.
-            </p>
-            <a href="https://www.pjoes.com/pdf-87919-21778?filename=The+Biolog+Plates.pdf" target="_blank" class="about-link">Read review (PDF)</a>
-          </div>
+            <div class="carousel-slide" style="--accent:#e36414">
+              <div class="slide-icon">
+                <svg viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="3" stroke="currentColor" stroke-width="2.5" fill="none"/><polygon points="20,18 20,32 32,25" fill="currentColor" opacity="0.4"/></svg>
+              </div>
+              <div class="slide-type">Webinar (2026)</div>
+              <h3>Community Analysis Made Easy with Odin</h3>
+              <p>Analyze EcoPlate data using diversity indices and substrate utilization patterns. Hands-on walkthrough of the Odin software platform.</p>
+              <a href="https://www.biolog.com/webinars/microbial-community-analysis-made-easy-with-odin-software/" target="_blank" class="slide-link">Watch webinar</a>
+            </div>
 
-          <div class="about-card">
-            <div class="learning-type">Teaching Lab</div>
-            <h3>Environmental Microbial Ecology — Lab Module</h3>
-            <p>
-              Undergraduate teaching module using EcoPlates. Accessible introduction to CLPP concepts,
-              plate reading, AWCD calculation, and interpreting metabolic profiles. Good starting point for beginners.
-            </p>
-            <a href="https://www.biolog.com/wp-content/uploads/2023/10/v28reprint.pdf" target="_blank" class="about-link">Read module (PDF)</a>
+            <div class="carousel-slide" style="--accent:#588157">
+              <div class="slide-icon">
+                <svg viewBox="0 0 48 48" fill="none"><path d="M24 6 L24 14 M16 10 L24 14 L32 10" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/><rect x="10" y="14" width="28" height="28" rx="4" stroke="currentColor" stroke-width="2.5" fill="none"/><line x1="16" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><line x1="16" y1="28" x2="28" y2="28" stroke="currentColor" stroke-width="1.5" opacity="0.3"/><line x1="16" y1="34" x2="30" y2="34" stroke="currentColor" stroke-width="1.5" opacity="0.3"/></svg>
+              </div>
+              <div class="slide-type">University Lab</div>
+              <h3>CLPP as Inquiry Lab Exercise</h3>
+              <p>Published in The American Biology Teacher. University of Pittsburgh course-based EcoPlate lab where students design their own experiments.</p>
+              <a href="https://online.ucpress.edu/abt/article/78/9/776/18866/" target="_blank" class="slide-link">View article</a>
+            </div>
+
+            <div class="carousel-slide" style="--accent:#bc6c25">
+              <div class="slide-icon">
+                <svg viewBox="0 0 48 48" fill="none"><path d="M24 6 L24 14 M16 10 L24 14 L32 10" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/><rect x="10" y="14" width="28" height="28" rx="4" stroke="currentColor" stroke-width="2.5" fill="none"/><line x1="16" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><line x1="16" y1="28" x2="28" y2="28" stroke="currentColor" stroke-width="1.5" opacity="0.3"/><line x1="16" y1="34" x2="30" y2="34" stroke="currentColor" stroke-width="1.5" opacity="0.3"/></svg>
+              </div>
+              <div class="slide-type">Education Portal</div>
+              <h3>Biolog Education Portal</h3>
+              <p>Lesson plans and lab protocols from leading universities (Lycoming College, U. Toledo, Arizona State). Free resources for teaching with EcoPlates.</p>
+              <a href="https://www.biolog.com/education-portal/" target="_blank" class="slide-link">Visit portal</a>
+            </div>
+
+            <div class="carousel-slide" style="--accent:#264653">
+              <div class="slide-icon">
+                <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="2.5" fill="none"/><path d="M14 30 Q19 18 24 22 Q29 26 34 16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="14" cy="30" r="2" fill="currentColor" opacity="0.5"/><circle cx="24" cy="22" r="2" fill="currentColor" opacity="0.5"/><circle cx="34" cy="16" r="2" fill="currentColor" opacity="0.5"/></svg>
+              </div>
+              <div class="slide-type">Statistical Guide</div>
+              <h3>Statistical Recipe for EcoPlate Profiling</h3>
+              <p>Miki et al. (2018): optimizing statistical power with color development curves, technical replicates, and substrate chemical structure via fuzzy set theory.</p>
+              <a href="https://link.springer.com/article/10.1007/s11284-017-1554-0" target="_blank" class="slide-link">Read paper</a>
+            </div>
+
+            <div class="carousel-slide" style="--accent:#d62828">
+              <div class="slide-icon">
+                <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="32" height="36" rx="4" stroke="currentColor" stroke-width="2.5" fill="none"/><line x1="14" y1="14" x2="34" y2="14" stroke="currentColor" stroke-width="2" opacity="0.5"/><line x1="14" y1="20" x2="30" y2="20" stroke="currentColor" stroke-width="2" opacity="0.4"/><line x1="14" y1="26" x2="32" y2="26" stroke="currentColor" stroke-width="2" opacity="0.3"/><line x1="14" y1="32" x2="26" y2="32" stroke="currentColor" stroke-width="2" opacity="0.25"/></svg>
+              </div>
+              <div class="slide-type">Methodology Paper</div>
+              <h3>Standardized Method for Soil Functional Diversity</h3>
+              <p>Detailed methodology for reproducible EcoPlate assays. Addresses pitfalls: inoculum density, blank definition, incubation timing.</p>
+              <a href="https://www.mdpi.com/2076-3417/9/19/4035" target="_blank" class="slide-link">Read paper (Open Access)</a>
+            </div>
+
+            <div class="carousel-slide" style="--accent:#457b9d">
+              <div class="slide-icon">
+                <svg viewBox="0 0 48 48" fill="none"><rect x="4" y="8" width="40" height="32" rx="4" stroke="currentColor" stroke-width="2.5" fill="none"/><line x1="4" y1="16" x2="44" y2="16" stroke="currentColor" stroke-width="1.5" opacity="0.3"/><rect x="10" y="20" width="12" height="8" rx="2" fill="currentColor" opacity="0.15"/><rect x="26" y="20" width="12" height="8" rx="2" fill="currentColor" opacity="0.15"/><rect x="10" y="30" width="28" height="4" rx="1" fill="currentColor" opacity="0.1"/></svg>
+              </div>
+              <div class="slide-type">Review Article</div>
+              <h3>Biolog Plates Technique — Comprehensive Review</h3>
+              <p>Full review: history, applications in soil/water/wastewater/compost. Data analysis: PCA, AWCD kinetics, and diversity indices.</p>
+              <a href="https://www.pjoes.com/pdf-87919-21778?filename=The+Biolog+Plates.pdf" target="_blank" class="slide-link">Read review (PDF)</a>
+            </div>
+
+            <div class="carousel-slide" style="--accent:#2d6a4f">
+              <div class="slide-icon">
+                <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="32" height="36" rx="4" stroke="currentColor" stroke-width="2.5" fill="none"/><line x1="14" y1="14" x2="34" y2="14" stroke="currentColor" stroke-width="2" opacity="0.5"/><line x1="14" y1="20" x2="30" y2="20" stroke="currentColor" stroke-width="2" opacity="0.4"/><circle cx="18" cy="30" r="5" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="22" y1="34" x2="28" y2="38" stroke="currentColor" stroke-width="1.5"/></svg>
+              </div>
+              <div class="slide-type">Lab Protocol</div>
+              <h3>CLPP Laboratory Protocol</h3>
+              <p>Step-by-step from U. Toledo's Laboratory for Microbial Ecology. Soil preparation, dilution series, inoculation, incubation, reading.</p>
+              <a href="https://www.biolog.com/wp-content/uploads/2023/10/Sigler_Von_Sigler_LEPR_Protocols_files_CLPP.pdf" target="_blank" class="slide-link">Read protocol (PDF)</a>
+            </div>
+
+            <div class="carousel-slide" style="--accent:#0077b6">
+              <div class="slide-icon">
+                <svg viewBox="0 0 48 48" fill="none"><path d="M24 6 L24 14 M16 10 L24 14 L32 10" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/><rect x="10" y="14" width="28" height="28" rx="4" stroke="currentColor" stroke-width="2.5" fill="none"/><line x1="16" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="1.5" opacity="0.4"/><line x1="16" y1="28" x2="28" y2="28" stroke="currentColor" stroke-width="1.5" opacity="0.3"/><line x1="16" y1="34" x2="30" y2="34" stroke="currentColor" stroke-width="1.5" opacity="0.3"/></svg>
+              </div>
+              <div class="slide-type">Teaching Lab</div>
+              <h3>Environmental Microbial Ecology — Lab Module</h3>
+              <p>Undergraduate teaching module. Accessible introduction to CLPP concepts, plate reading, AWCD calculation, and interpreting profiles.</p>
+              <a href="https://www.biolog.com/wp-content/uploads/2023/10/v28reprint.pdf" target="_blank" class="slide-link">Read module (PDF)</a>
+            </div>
+
           </div>
+          <button class="carousel-btn carousel-next" aria-label="Next slide">&#8250;</button>
         </div>
+        <div class="carousel-dots" id="carousel-dots"></div>
+        <script>
+        (function() {
+          const track = document.getElementById('learning-carousel');
+          const dots = document.getElementById('carousel-dots');
+          const slides = track.querySelectorAll('.carousel-slide');
+          const prev = track.parentElement.querySelector('.carousel-prev');
+          const next = track.parentElement.querySelector('.carousel-next');
+          const slideW = 280 + 16; // width + gap
+
+          // Create dots
+          slides.forEach((_, i) => {
+            const d = document.createElement('button');
+            d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            d.addEventListener('click', () => { track.scrollTo({ left: i * slideW }); });
+            dots.appendChild(d);
+          });
+
+          prev.addEventListener('click', () => { track.scrollBy({ left: -slideW * 2 }); });
+          next.addEventListener('click', () => { track.scrollBy({ left: slideW * 2 }); });
+
+          // Update dots on scroll
+          track.addEventListener('scroll', () => {
+            const idx = Math.round(track.scrollLeft / slideW);
+            dots.querySelectorAll('.carousel-dot').forEach((d, i) => {
+              d.classList.toggle('active', i === idx);
+            });
+          });
+        })();
+        </script>
 
         <h2 class="section-heading mt-2">Where to Get EcoPlate Data</h2>
         <p class="about-intro">

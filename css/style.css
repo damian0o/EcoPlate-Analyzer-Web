@@ -719,6 +719,142 @@ textarea {
   line-height: 1.6;
 }
 
+/* ---------- Learning Carousel ---------- */
+
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem 0;
+  scrollbar-width: none;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-slide {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-top: 4px solid var(--accent, #009688);
+  border-radius: 8px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+  transition: box-shadow 0.2s;
+}
+
+.carousel-slide:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.slide-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--accent, #009688);
+  margin-bottom: 0.6rem;
+}
+
+.slide-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.slide-type {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent, #009688);
+  margin-bottom: 0.25rem;
+}
+
+.carousel-slide h3 {
+  font-size: 0.95rem;
+  color: #2d3748;
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+.carousel-slide p {
+  font-size: 0.82rem;
+  color: #555;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.slide-link {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-size: 0.82rem;
+  color: var(--accent, #009688);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.slide-link:hover {
+  text-decoration: underline;
+}
+
+.carousel-btn {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: #555;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.carousel-btn:hover {
+  background: #009688;
+  color: #fff;
+  border-color: #009688;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.carousel-dot.active {
+  background: #009688;
+}
+
 .learning-type {
   font-size: 0.7rem;
   font-weight: 600;
