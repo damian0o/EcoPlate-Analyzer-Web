@@ -4,12 +4,14 @@
 import { initLoadTab } from './tabs/load-tab.js';
 import { initEditTab, refreshEditDropdown } from './tabs/edit-tab.js';
 import { initFilterTab, refreshFilterLists } from './tabs/filter-tab.js';
+import { initTestsTab, refreshTestsLists } from './tabs/tests-tab.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   initTabs();
   initLoadTab();
   initEditTab();
   initFilterTab();
+  initTestsTab();
 });
 
 /* ---------- Tab Navigation ---------- */
@@ -36,6 +38,11 @@ function initTabs() {
       // Refresh filter lists when filter tab becomes visible
       if (target === "filter") {
         refreshFilterLists();
+      }
+
+      // Refresh tests lists when tests tab becomes visible
+      if (target === "tests") {
+        refreshTestsLists();
       }
     });
   });
