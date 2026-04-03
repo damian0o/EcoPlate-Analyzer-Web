@@ -2,10 +2,12 @@
 // Tab navigation and shared state
 
 import { initLoadTab } from './tabs/load-tab.js';
+import { initEditTab, refreshEditDropdown } from './tabs/edit-tab.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   initTabs();
   initLoadTab();
+  initEditTab();
 });
 
 /* ---------- Tab Navigation ---------- */
@@ -23,6 +25,11 @@ function initTabs() {
 
       btn.classList.add("active");
       document.getElementById(`tab-${target}`).classList.add("active");
+
+      // Refresh edit tab dropdown when it becomes visible
+      if (target === "edit") {
+        refreshEditDropdown();
+      }
     });
   });
 }
