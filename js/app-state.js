@@ -1,5 +1,3 @@
-import { EcoplateRecord } from './record.js';
-
 const state = {
   records: [],
   recordsIndex: {
