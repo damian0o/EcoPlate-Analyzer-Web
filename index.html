@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoPlate Analyzer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>EcoPlate Analyzer</h1>
+    <nav>
+      <button class="tab-btn active" data-tab="load">Load Data</button>
+      <button class="tab-btn" data-tab="edit">Edit</button>
+      <button class="tab-btn" data-tab="filter">Filter</button>
+      <button class="tab-btn" data-tab="tests">Tests</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="tab-load" class="tab-content active">
+      <div id="file-selector"></div>
+      <div id="ecoplate-grid"></div>
+      <div id="metadata-form"></div>
+      <div id="load-actions"></div>
+      <div id="load-message"></div>
+    </section>
+    <section id="tab-edit" class="tab-content">
+      <div id="edit-content"></div>
+    </section>
+    <section id="tab-filter" class="tab-content">
+      <div id="filter-content"></div>
+    </section>
+    <section id="tab-tests" class="tab-content">
+      <div id="tests-content"></div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/chart.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
