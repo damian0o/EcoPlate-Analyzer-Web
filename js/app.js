@@ -1,8 +1,11 @@
 // EcoPlate Analyzer — Main application entry point
 // Tab navigation and shared state
 
+import { initLoadTab } from './tabs/load-tab.js';
+
 document.addEventListener("DOMContentLoaded", () => {
   initTabs();
+  initLoadTab();
 });
 
 /* ---------- Tab Navigation ---------- */
