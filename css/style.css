@@ -577,6 +577,39 @@ textarea {
   line-height: 1.6;
 }
 
+.data-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.data-card h3,
+.data-card p,
+.data-card .about-link {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.data-card h3 {
+  padding-top: 1rem;
+}
+
+.data-card .about-link {
+  padding-bottom: 1rem;
+}
+
+.data-card-banner {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.data-card-banner svg {
+  width: 100%;
+  height: 100%;
+}
+
 .about-link {
   display: inline-block;
   margin-top: 0.5rem;
