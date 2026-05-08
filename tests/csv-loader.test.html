@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>csv-loader tests</title>
+  <style>
+    body { font-family: monospace; padding: 1rem; }
+    .pass { color: green; }
+    .fail { color: red; white-space: pre-wrap; }
+    hr { margin: 1rem 0; }
+    .summary { font-weight: bold; font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+  <h1>csv-loader tests</h1>
+  <div id="results"></div>
+  <script type="module">
+    import { parseEcoplateCsv } from '../js/csv-loader.js';
+
+    const results = document.getElementById('results');
+    let passed = 0, failed = 0;
+
+    function test(name, fn) {
+      try {
+        fn();
+        const div = document.createElement('div');
+        div.className = 'pass';
+        div.textContent = `PASS  ${name}`;
+        results.appendChild(div);
+        passed++;
+      } catch (e) {
+        const div = document.createElement('div');
+        div.className = 'fail';
+        div.textContent = `FAIL  ${name}\n      ${e.message}`;
+        results.appendChild(div);
+        failed++;
+      }
+    }
+
+    function assertDeepEqual(actual, expected, msg) {
+      const a = JSON.stringify(actual);
+      const e = JSON.stringify(expected);
+      if (a !== e) {
+        throw new Error(`${msg || 'assertDeepEqual'}\n  expected: ${e}\n  actual:   ${a}`);
+      }
+    }
+
+    function assertThrows(fn, expectedSubstrings) {
+      let thrown;
+      try { fn(); } catch (e) { thrown = e; }
+      if (!thrown) throw new Error(`expected fn to throw, but it did not`);
+      const subs = Array.isArray(expectedSubstrings) ? expectedSubstrings : [expectedSubstrings];
+      for (const sub of subs) {
+        if (!thrown.message.includes(sub)) {
+          throw new Error(`expected error to include '${sub}', got: ${thrown.message}`);
+        }
+      }
+    }
+
+    // ---- tests added in subsequent tasks ----
+
+    queueMicrotask(() => {
+      const summary = document.createElement('div');
+      summary.className = 'summary';
+      summary.textContent = `\n${passed} passed, ${failed} failed`;
+      results.appendChild(document.createElement('hr'));
+      results.appendChild(summary);
+    });
+  </script>
+</body>
+</html>
