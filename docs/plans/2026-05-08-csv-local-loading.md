@@ -508,50 +508,78 @@ git commit -m "test(csv): document tab-separated input behaviour"
 **Files:**
 - Modify: `tests/csv-loader.test.html`
 
-- [ ] **Step 1: Add fetch-based fixture test**
+- [ ] **Step 1: Replace `queueMicrotask` block with inline summary at end**
 
-Append to test runner:
+In `tests/csv-loader.test.html`, the existing `queueMicrotask(() => { ... })` block must be replaced with bare summary code at the very bottom of the script. Reason: when top-level `await` is added (next step), the JS engine drains microtasks at the first `await`, which would render the summary before the async tests run, showing wrong counts.
+
+Find this block:
 ```javascript
-async function asyncTest(name, fn) {
-  try {
-    await fn();
-    const div = document.createElement('div');
-    div.className = 'pass';
-    div.textContent = `PASS  ${name}`;
-    results.appendChild(div);
-    passed++;
-  } catch (e) {
-    const div = document.createElement('div');
-    div.className = 'fail';
-    div.textContent = `FAIL  ${name}\n      ${e.message}`;
-    results.appendChild(div);
-    failed++;
-  }
-}
-
-await asyncTest('parses sample_590.csv fixture', async () => {
-  const text = await fetch('fixtures/sample_590.csv').then(r => r.text());
-  const m = parseEcoplateCsv(text);
-  assertDeepEqual(m.length, 8);
-  assertDeepEqual(m[0].length, 12);
-  assertDeepEqual(m[0][0], 0.123);
-});
-
-await asyncTest('parses sample_720.csv fixture', async () => {
-  const text = await fetch('fixtures/sample_720.csv').then(r => r.text());
-  const m = parseEcoplateCsv(text);
-  assertDeepEqual(m.length, 8);
-  assertDeepEqual(m[7][11], 0.2);
-});
+    queueMicrotask(() => {
+      const summary = document.createElement('div');
+      summary.className = 'summary';
+      summary.textContent = `\n${passed} passed, ${failed} failed`;
+      results.appendChild(document.createElement('hr'));
+      results.appendChild(summary);
+    });
 ```
 
-Note: place `await` calls at top level — the script is `type="module"` so top-level await works.
+Replace it with the same code without the `queueMicrotask` wrapper (we'll add async tests above it in Step 2):
+```javascript
+    // ---- async tests added here in next step ----
 
-- [ ] **Step 2: Reload — all tests PASS**
+    const summary = document.createElement('div');
+    summary.className = 'summary';
+    summary.textContent = `\n${passed} passed, ${failed} failed`;
+    results.appendChild(document.createElement('hr'));
+    results.appendChild(summary);
+```
 
-Expected: `9 passed, 0 failed`.
+Because the script is `type="module"`, the entire body — including any top-level `await` — completes before this summary code runs.
 
-- [ ] **Step 3: Commit**
+- [ ] **Step 2: Add async test helper and fixture tests**
+
+Insert these lines at the `// ---- async tests added here in next step ----` marker (replacing it):
+```javascript
+    async function asyncTest(name, fn) {
+      try {
+        await fn();
+        const div = document.createElement('div');
+        div.className = 'pass';
+        div.textContent = `PASS  ${name}`;
+        results.appendChild(div);
+        passed++;
+      } catch (e) {
+        const div = document.createElement('div');
+        div.className = 'fail';
+        div.textContent = `FAIL  ${name}\n      ${e.message}`;
+        results.appendChild(div);
+        failed++;
+      }
+    }
+
+    await asyncTest('parses sample_590.csv fixture', async () => {
+      const text = await fetch('fixtures/sample_590.csv').then(r => r.text());
+      const m = parseEcoplateCsv(text);
+      assertDeepEqual(m.length, 8);
+      assertDeepEqual(m[0].length, 12);
+      assertDeepEqual(m[0][0], 0.123);
+    });
+
+    await asyncTest('parses sample_720.csv fixture', async () => {
+      const text = await fetch('fixtures/sample_720.csv').then(r => r.text());
+      const m = parseEcoplateCsv(text);
+      assertDeepEqual(m.length, 8);
+      assertDeepEqual(m[7][11], 0.2);
+    });
+```
+
+Top-level `await` works because the script is `type="module"`. The summary block (added in Step 1) follows these awaits in source order, so it runs after both fixture tests resolve.
+
+- [ ] **Step 3: Reload — all tests PASS**
+
+Expected: `9 passed, 0 failed`. Importantly: the summary should display the final counts (9 passed), not the intermediate count from before the awaits resolved.
+
+- [ ] **Step 4: Commit**
 
 ```bash
 git add tests/csv-loader.test.html
