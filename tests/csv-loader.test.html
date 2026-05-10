@@ -57,6 +57,23 @@
       }
     }
 
+    test('parses 8x12 with comma separator and dot decimal', () => {
+      const text =
+        '0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2\n' +
+        '0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2\n' +
+        '0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2\n' +
+        '0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2\n' +
+        '0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2\n' +
+        '0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2\n' +
+        '0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2\n' +
+        '0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2';
+      const matrix = parseEcoplateCsv(text);
+      assertDeepEqual(matrix.length, 8);
+      assertDeepEqual(matrix[0].length, 12);
+      assertDeepEqual(matrix[0][0], 0.1);
+      assertDeepEqual(matrix[7][11], 1.2);
+    });
+
     // ---- tests added in subsequent tasks ----
 
     queueMicrotask(() => {
