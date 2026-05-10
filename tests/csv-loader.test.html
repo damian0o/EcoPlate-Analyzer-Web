@@ -119,13 +119,43 @@
 
     // ---- tests added in subsequent tasks ----
 
-    queueMicrotask(() => {
-      const summary = document.createElement('div');
-      summary.className = 'summary';
-      summary.textContent = `\n${passed} passed, ${failed} failed`;
-      results.appendChild(document.createElement('hr'));
-      results.appendChild(summary);
+    async function asyncTest(name, fn) {
+      try {
+        await fn();
+        const div = document.createElement('div');
+        div.className = 'pass';
+        div.textContent = `PASS  ${name}`;
+        results.appendChild(div);
+        passed++;
+      } catch (e) {
+        const div = document.createElement('div');
+        div.className = 'fail';
+        div.textContent = `FAIL  ${name}\n      ${e.message}`;
+        results.appendChild(div);
+        failed++;
+      }
+    }
+
+    await asyncTest('parses sample_590.csv fixture', async () => {
+      const text = await fetch('fixtures/sample_590.csv').then(r => r.text());
+      const m = parseEcoplateCsv(text);
+      assertDeepEqual(m.length, 8);
+      assertDeepEqual(m[0].length, 12);
+      assertDeepEqual(m[0][0], 0.123);
     });
+
+    await asyncTest('parses sample_720.csv fixture', async () => {
+      const text = await fetch('fixtures/sample_720.csv').then(r => r.text());
+      const m = parseEcoplateCsv(text);
+      assertDeepEqual(m.length, 8);
+      assertDeepEqual(m[7][11], 0.2);
+    });
+
+    const summary = document.createElement('div');
+    summary.className = 'summary';
+    summary.textContent = `\n${passed} passed, ${failed} failed`;
+    results.appendChild(document.createElement('hr'));
+    results.appendChild(summary);
   </script>
 </body>
 </html>
