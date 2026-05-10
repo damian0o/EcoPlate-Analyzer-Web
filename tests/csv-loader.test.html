@@ -111,6 +111,12 @@
       assertThrows(() => parseEcoplateCsv(lines.join('\n')), ['Row 3', 'column 5', 'abc']);
     });
 
+    test('tab-separated input throws shape error (1 column detected)', () => {
+      const row = '0.1\t0.2\t0.3\t0.4\t0.5\t0.6\t0.7\t0.8\t0.9\t1.0\t1.1\t1.2';
+      const text = Array(8).fill(row).join('\n');
+      assertThrows(() => parseEcoplateCsv(text), ['Row 1', '12 columns', '1']);
+    });
+
     // ---- tests added in subsequent tasks ----
 
     queueMicrotask(() => {
