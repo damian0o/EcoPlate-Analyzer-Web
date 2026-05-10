@@ -33,9 +33,10 @@
           <div class="about-card">
             <h3>Load &amp; Visualize</h3>
             <p>
-              Import experiment data from the remote data repository. View the full 8&times;12 EcoPlate grid
-              with optical density values displayed across all 31 carbon sources and 3 replicate sections.
-              Annotate each section with bacteria, stressor, concentration, time, and repetition metadata.
+              Load two CSV files from your computer (OD590 and OD720 readings, 8&times;12 each). View the full
+              EcoPlate grid with corrected optical density values displayed across all 31 carbon sources and
+              3 replicate sections. Annotate each section with bacteria, stressor, concentration, time, and
+              repetition metadata.
             </p>
           </div>
 
@@ -520,11 +521,11 @@
 
         <div class="about-note mt-2">
           <p>
-            <strong>Data format:</strong> This analyzer expects experiment data as XLSX files with two wavelength
-            readings (590 nm and 720 nm) in an 8&times;12 grid layout. The difference (OD590 &minus; OD720) is
-            computed and split into three 8&times;4 matrices corresponding to the three EcoPlate replicate sections.
-            See the <a href="https://github.com/damian0o/EcoPlate-Data" target="_blank">EcoPlate-Data repository</a>
-            for the conversion pipeline and expected file structure.
+            <strong>Data format:</strong> This analyzer expects two CSV files per experiment &mdash; one with the
+            590 nm readings and one with the 720 nm readings, each an 8&times;12 grid of numbers (no headers).
+            The difference (OD590 &minus; OD720) is computed in-browser, rounded to 3 decimals, and split into
+            three 8&times;4 matrices corresponding to the three EcoPlate replicate sections. Both comma- and
+            semicolon-separated CSVs are auto-detected; decimal separators may be a dot or a comma.
           </p>
         </div>
       </div>
