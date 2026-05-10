@@ -1,4 +1,4 @@
-import { fetchIndex, fetchExperiment } from '../data-loader.js';
+import { parseEcoplateCsv } from '../csv-loader.js';
 import { addRecord, getRecords, getUniqueValues } from '../app-state.js';
 import { EcoplateRecord } from '../record.js';
 
@@ -17,102 +17,98 @@ function buildFileSelector() {
   const container = document.getElementById('file-selector');
   container.innerHTML = `
     <h2 class="section-heading">Select Data File</h2>
-    <div class="flex gap-1" style="align-items:center">
-      <select id="file-select" style="max-width:400px">
-        <option value="">Loading files...</option>
-      </select>
+    <div class="flex gap-1" style="flex-direction:column;align-items:flex-start;gap:0.6rem;max-width:520px">
+      <label style="width:100%">
+        Experiment name
+        <input type="text" id="experiment-name" placeholder="e.g. experiment_001" style="width:100%">
+      </label>
+      <label style="width:100%">
+        OD590 CSV
+        <input type="file" id="od590-file" accept=".csv,text/csv">
+      </label>
+      <label style="width:100%">
+        OD720 CSV
+        <input type="file" id="od720-file" accept=".csv,text/csv">
+      </label>
       <button id="load-file-btn" class="btn btn-primary" disabled>Load</button>
     </div>
   `;
 
-  const select = document.getElementById('file-select');
+  const nameInput = document.getElementById('experiment-name');
+  const od590Input = document.getElementById('od590-file');
+  const od720Input = document.getElementById('od720-file');
   const loadBtn = document.getElementById('load-file-btn');
 
-  fetchIndex()
-    .then(index => {
-      const files = index.files || index;
-      select.innerHTML = '<option value="">-- Choose a file --</option>';
-      (Array.isArray(files) ? files : []).forEach(f => {
-        const name = typeof f === 'string' ? f : f.name || f.filename;
-        const opt = document.createElement('option');
-        opt.value = name;
-        opt.textContent = name;
-        select.appendChild(opt);
-      });
-      loadBtn.disabled = false;
-    })
-    .catch(() => {
-      select.innerHTML = '<option value="">Failed to load file list</option>';
-      showMessage('Failed to fetch data index. Check your connection.', 'error');
-    });
+  function updateLoadButton() {
+    loadBtn.disabled = !(
+      nameInput.value.trim().length > 0 &&
+      od590Input.files.length === 1 &&
+      od720Input.files.length === 1
+    );
+  }
 
-  select.addEventListener('change', () => {
-    loadBtn.disabled = !select.value;
-  });
+  nameInput.addEventListener('input', updateLoadButton);
+  od590Input.addEventListener('change', updateLoadButton);
+  od720Input.addEventListener('change', updateLoadButton);
 
-  loadBtn.addEventListener('click', () => {
-    const filename = select.value;
-    if (!filename) return;
-    loadBtn.disabled = true;
-    loadBtn.textContent = 'Loading...';
-    fetchExperiment(filename)
-      .then(data => {
-        parseAndRenderGrid(data, filename);
-        loadBtn.textContent = 'Load';
-        loadBtn.disabled = false;
-      })
-      .catch(() => {
-        showMessage(`Failed to fetch ${filename}`, 'error');
-        loadBtn.textContent = 'Load';
-        loadBtn.disabled = false;
-      });
-  });
+  loadBtn.addEventListener('click', () => handleLoad(nameInput, od590Input, od720Input, loadBtn));
 }
 
 /* ---------- Parse & Render Grid ---------- */
 
-function parseAndRenderGrid(data, filename) {
-  // data.matrices is expected to be an array of 3 matrices, each 8 rows x 4 cols
-  // OR data itself is { matrices: [...] } or an array of 3 matrices
-  let matrices;
-  if (Array.isArray(data)) {
-    matrices = data;
-  } else if (data.matrices) {
-    matrices = data.matrices;
-  } else if (data.data) {
-    matrices = data.data;
-  } else {
-    // Attempt: data is a single 8x12 matrix; split into 3 sub-matrices of 8x4
-    const keys = Object.keys(data);
-    if (keys.length > 0 && Array.isArray(data[keys[0]])) {
-      matrices = [data];
-    } else {
-      showMessage('Unrecognized data format', 'error');
-      return;
+async function handleLoad(nameInput, od590Input, od720Input, loadBtn) {
+  const name = nameInput.value.trim();
+  const od590File = od590Input.files[0];
+  const od720File = od720Input.files[0];
+
+  loadBtn.disabled = true;
+  loadBtn.textContent = 'Loading...';
+
+  try {
+    const [text590, text720] = await Promise.all([
+      readFileAsText(od590File),
+      readFileAsText(od720File)
+    ]);
+
+    let od590, od720;
+    try {
+      od590 = parseEcoplateCsv(text590);
+    } catch (e) {
+      throw new Error(`OD590 CSV: ${e.message}`);
     }
-  }
+    try {
+      od720 = parseEcoplateCsv(text720);
+    } catch (e) {
+      throw new Error(`OD720 CSV: ${e.message}`);
+    }
 
-  // If we got a single 8x12 matrix, split it
-  if (matrices.length === 1 && matrices[0].length === 8 && matrices[0][0].length === 12) {
-    const full = matrices[0];
-    matrices = [
-      full.map(row => row.slice(0, 4)),
-      full.map(row => row.slice(4, 8)),
-      full.map(row => row.slice(8, 12))
+    const round3 = x => Math.round(x * 1000) / 1000;
+    const diff = od590.map((row, r) => row.map((v, c) => round3(v - od720[r][c])));
+    const matrices = [
+      diff.map(r => r.slice(0, 4)),
+      diff.map(r => r.slice(4, 8)),
+      diff.map(r => r.slice(8, 12))
     ];
-  } else if (matrices.length >= 8 && Array.isArray(matrices[0]) && matrices[0].length === 12) {
-    // It's a flat 8x12 matrix
-    const full = matrices;
-    matrices = [
-      full.map(row => row.slice(0, 4)),
-      full.map(row => row.slice(4, 8)),
-      full.map(row => row.slice(8, 12))
-    ];
-  }
 
-  loadedMatrices = matrices;
-  loadedFileName = filename;
-  renderGrid(matrices);
+    loadedMatrices = matrices;
+    loadedFileName = name;
+    renderGrid(matrices);
+    showMessage(`Loaded experiment: ${name}`, 'success', 3000);
+  } catch (e) {
+    showMessage(e.message, 'error');
+  } finally {
+    loadBtn.textContent = 'Load';
+    loadBtn.disabled = false;
+  }
+}
+
+function readFileAsText(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(new Error(`Failed to read file: ${file.name}`));
+    reader.readAsText(file, 'utf-8');
+  });
 }
 
 function renderGrid(matrices) {
