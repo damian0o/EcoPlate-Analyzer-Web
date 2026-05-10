@@ -10,9 +10,13 @@ export function parseEcoplateCsv(text) {
     if (cells.length !== 12) {
       throw new Error(`Row ${r + 1}: expected 12 columns, got ${cells.length}`);
     }
-    return cells.map(cell => {
+    return cells.map((cell, c) => {
       const normalized = decimalSep === ',' ? cell.replace(',', '.') : cell;
-      return Number(normalized);
+      const value = Number(normalized);
+      if (!Number.isFinite(value)) {
+        throw new Error(`Row ${r + 1}, column ${c + 1} is not a number: '${cell}'`);
+      }
+      return value;
     });
   });
 }

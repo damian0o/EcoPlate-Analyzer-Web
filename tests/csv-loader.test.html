@@ -104,6 +104,13 @@
       assertThrows(() => parseEcoplateCsv(lines.join('\n')), ['Row 4', '12 columns', '13']);
     });
 
+    test('throws when a cell is not a number, with row/col/value', () => {
+      const goodRow = '0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2';
+      const badRow  = '0.1,0.2,0.3,0.4,abc,0.6,0.7,0.8,0.9,1.0,1.1,1.2'; // col 5 = "abc"
+      const lines = [goodRow, goodRow, badRow, goodRow, goodRow, goodRow, goodRow, goodRow];
+      assertThrows(() => parseEcoplateCsv(lines.join('\n')), ['Row 3', 'column 5', 'abc']);
+    });
+
     // ---- tests added in subsequent tasks ----
 
     queueMicrotask(() => {
