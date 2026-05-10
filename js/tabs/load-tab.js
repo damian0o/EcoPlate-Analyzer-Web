@@ -181,7 +181,7 @@ function buildMetadataForm() {
         <input type="text" id="stressor-${i}" list="stressor-list" placeholder="Stressor type">
 
         <label for="concentration-${i}">Concentration</label>
-        <input type="number" id="concentration-${i}" min="0" step="any" placeholder="0">
+        <input type="number" id="concentration-${i}" min="0" step="1" placeholder="0">
 
         <label for="time-${i}">Time</label>
         <input type="number" id="time-${i}" min="0" step="1" placeholder="0">
@@ -272,8 +272,8 @@ function handleAddRecords() {
     if (!stressor) errors.push(`${label}: Stressor is required`);
 
     const concentration = Number(concentrationStr);
-    if (concentrationStr === '' || isNaN(concentration) || concentration < 0) {
-      errors.push(`${label}: Concentration must be a number >= 0`);
+    if (concentrationStr === '' || !Number.isInteger(concentration) || concentration < 0) {
+      errors.push(`${label}: Concentration must be an integer >= 0`);
     }
 
     const time = Number(timeStr);
