@@ -84,6 +84,13 @@
       assertDeepEqual(matrix[7][11], 1.2);
     });
 
+    test('ignores trailing empty lines and whitespace-only lines', () => {
+      const row = '0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2';
+      const text = Array(8).fill(row).join('\n') + '\n\n   \n';
+      const matrix = parseEcoplateCsv(text);
+      assertDeepEqual(matrix.length, 8);
+    });
+
     // ---- tests added in subsequent tasks ----
 
     queueMicrotask(() => {
