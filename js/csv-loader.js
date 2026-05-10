@@ -1,4 +1,13 @@
 export function parseEcoplateCsv(text) {
   const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
-  return lines.map(line => line.split(',').map(c => Number(c.trim())));
+  if (lines.length === 0) return [];
+  const fieldSep = lines[0].includes(';') ? ';' : ',';
+  const decimalSep = fieldSep === ';' ? ',' : '.';
+  return lines.map(line => {
+    const cells = line.split(fieldSep).map(c => c.trim());
+    return cells.map(cell => {
+      const normalized = decimalSep === ',' ? cell.replace(',', '.') : cell;
+      return Number(normalized);
+    });
+  });
 }
