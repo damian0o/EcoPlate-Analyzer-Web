@@ -91,6 +91,12 @@
       assertDeepEqual(matrix.length, 8);
     });
 
+    test('throws on wrong row count (7 rows)', () => {
+      const row = '0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2';
+      const text = Array(7).fill(row).join('\n');
+      assertThrows(() => parseEcoplateCsv(text), ['8 rows', '7']);
+    });
+
     // ---- tests added in subsequent tasks ----
 
     queueMicrotask(() => {

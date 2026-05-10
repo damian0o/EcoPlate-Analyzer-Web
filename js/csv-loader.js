@@ -1,6 +1,8 @@
 export function parseEcoplateCsv(text) {
   const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
-  if (lines.length === 0) return [];
+  if (lines.length !== 8) {
+    throw new Error(`Expected 8 rows × 12 columns, got ${lines.length} rows`);
+  }
   const fieldSep = lines[0].includes(';') ? ';' : ',';
   const decimalSep = fieldSep === ';' ? ',' : '.';
   return lines.map(line => {
