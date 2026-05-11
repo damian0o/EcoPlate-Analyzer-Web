@@ -372,6 +372,28 @@ textarea {
   color: #009688;
 }
 
+.checkbox-list {
+  max-height: 12rem;
+  overflow-y: auto;
+  font-size: 0.82rem;
+  padding: 0.2rem 0;
+}
+.checkbox-list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.4rem;
+  cursor: pointer;
+  user-select: none;
+}
+.checkbox-list-item:hover {
+  background: #edf2f7;
+}
+.checkbox-list-item input[type="checkbox"] {
+  margin: 0;
+  flex-shrink: 0;
+}
+
 /* ---------- Results Tables ---------- */
 
 .results-table {
