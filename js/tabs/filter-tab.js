@@ -83,31 +83,37 @@ function filterColumn(id, label) {
   return `
     <div class="filter-list">
       <h4>${label}</h4>
-      <select id="${id}" multiple size="8" style="width:100%;font-size:0.82rem;border:none;outline:none"></select>
+      <div id="${id}" class="checkbox-list"></div>
     </div>
   `;
 }
 
-function populateFilterList(selectId, values) {
-  const select = document.getElementById(selectId);
-  if (!select) return;
-  const prevSelected = new Set(Array.from(select.selectedOptions).map(o => o.value));
-  select.innerHTML = '';
+function populateFilterList(containerId, values) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const prevChecked = new Set(
+    Array.from(container.querySelectorAll('input[type="checkbox"]:checked')).map(c => c.value)
+  );
+  container.innerHTML = '';
   values.forEach(v => {
-    const opt = document.createElement('option');
-    opt.value = String(v);
-    opt.textContent = String(v);
-    if (prevSelected.has(String(v))) opt.selected = true;
-    select.appendChild(opt);
+    const label = document.createElement('label');
+    label.className = 'checkbox-list-item';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.value = String(v);
+    if (prevChecked.has(String(v))) cb.checked = true;
+    label.appendChild(cb);
+    label.appendChild(document.createTextNode(' ' + String(v)));
+    container.appendChild(label);
   });
 }
 
 /* ---------- Helpers ---------- */
 
-function getSelectedValues(selectId) {
-  const select = document.getElementById(selectId);
-  if (!select) return [];
-  return Array.from(select.selectedOptions).map(o => o.value);
+function getSelectedValues(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return [];
+  return Array.from(container.querySelectorAll('input[type="checkbox"]:checked')).map(c => c.value);
 }
 
 function showMessage(text, type, autoDismissMs) {
@@ -185,10 +191,8 @@ function handleFilter() {
 /* ---------- Clear ---------- */
 
 function handleClear() {
-  const selects = document.querySelectorAll('#filter-selects select');
-  selects.forEach(s => {
-    Array.from(s.options).forEach(o => { o.selected = false; });
-  });
+  const checkboxes = document.querySelectorAll('#filter-selects input[type="checkbox"]');
+  checkboxes.forEach(cb => { cb.checked = false; });
   document.getElementById('filter-results').innerHTML = '';
   document.getElementById('filter-message').innerHTML = '';
   document.getElementById('filter-save-csv-btn').disabled = true;
