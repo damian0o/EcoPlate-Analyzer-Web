@@ -31,38 +31,6 @@ export function calculateSAWCD(matrix, groupSources) {
   return count > 0 ? sum / count : 0;
 }
 
-export function calculateShannonIndex(matrix) {
-  // H = -sum(pi * ln(pi)) where pi = val/total for positive values
-  // Skip first value (Water well)
-  const values = [];
-  let first = true;
-  for (const row of matrix) {
-    for (const val of row) {
-      if (first) { first = false; continue; }
-      const v = Number(val);
-      if (!isNaN(v) && v > 0) values.push(v);
-    }
-  }
-  const total = values.reduce((a, b) => a + b, 0);
-  if (total === 0) return 0;
-  return -values.reduce((h, v) => {
-    const p = v / total;
-    return h + p * Math.log(p);
-  }, 0);
-}
-
-export function calculateShannonEvenness(matrix) {
-  const H = calculateShannonIndex(matrix);
-  let S = 0, first = true;
-  for (const row of matrix) {
-    for (const val of row) {
-      if (first) { first = false; continue; }
-      if (Number(val) > 0) S++;
-    }
-  }
-  return S > 1 ? H / Math.log(S) : 0;
-}
-
 export function calculateShannonIndexForSubset(matrix, sources) {
   const values = [];
   for (const source of sources) {
