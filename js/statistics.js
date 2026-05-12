@@ -62,3 +62,38 @@ export function calculateShannonEvenness(matrix) {
   }
   return S > 1 ? H / Math.log(S) : 0;
 }
+
+export function calculateShannonIndexForSubset(matrix, sources) {
+  const values = [];
+  for (const source of sources) {
+    for (let r = 0; r < CARBON_SOURCE_MATRIX.length; r++) {
+      const c = CARBON_SOURCE_MATRIX[r].indexOf(source);
+      if (c !== -1) {
+        const v = Number(matrix[r][c]);
+        if (!isNaN(v) && v > 0) values.push(v);
+        break;
+      }
+    }
+  }
+  const total = values.reduce((a, b) => a + b, 0);
+  if (total === 0) return 0;
+  return -values.reduce((h, v) => {
+    const p = v / total;
+    return h + p * Math.log(p);
+  }, 0);
+}
+
+export function calculateShannonEvennessForSubset(matrix, sources) {
+  const H = calculateShannonIndexForSubset(matrix, sources);
+  let S = 0;
+  for (const source of sources) {
+    for (let r = 0; r < CARBON_SOURCE_MATRIX.length; r++) {
+      const c = CARBON_SOURCE_MATRIX[r].indexOf(source);
+      if (c !== -1) {
+        if (Number(matrix[r][c]) > 0) S++;
+        break;
+      }
+    }
+  }
+  return S > 1 ? H / Math.log(S) : 0;
+}
