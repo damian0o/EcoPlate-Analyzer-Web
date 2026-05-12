@@ -1,7 +1,7 @@
 import { getUniqueValues, getRecords } from '../app-state.js';
 import { filterRecords } from '../filter-engine.js';
 import { CARBON_SOURCE_MATRIX, CARBON_SOURCE_GROUPS } from '../carbon-sources.js';
-import { calculateAWCD, calculateSAWCD, calculateShannonIndex, calculateShannonEvenness } from '../statistics.js';
+import { calculateAWCD, calculateSAWCD, calculateShannonIndexForSubset, calculateShannonEvennessForSubset } from '../statistics.js';
 import { renderGroupedBarChart, renderStackedBarChart, saveChartAsPNG } from '../charts.js';
 
 /* ---------- Carbon source helpers ---------- */
@@ -171,12 +171,6 @@ function runTest(type) {
   const selectedSources = getSelectedValues('tests-carbon-sources');
   const selectedGroups = getSelectedValues('tests-carbon-groups');
 
-  // For SAWCD, need carbon groups
-  if (type === 'sawcd' && selectedGroups.length === 0) {
-    showMessage('Please select at least one Carbon Group for SAWCD calculation.', 'error');
-    return;
-  }
-
   if (selectedSources.length > 0 && selectedGroups.length > 0) {
     showMessage('Cannot filter by both Carbon Sources and Carbon Groups at the same time.', 'error');
     return;
@@ -204,8 +198,9 @@ function runTest(type) {
 
   // Calculate statistics for all records at once
   const results = [];
+  const isPerGroup = type === 'sawcd' || type === 'shannon' || type === 'evenness';
 
-  if (type === 'sawcd') {
+  if (isPerGroup) {
     const groupNames = selectedGroups.length > 0
       ? selectedGroups
       : Object.keys(CARBON_SOURCE_GROUPS);
@@ -213,7 +208,14 @@ function runTest(type) {
     for (const rec of records) {
       for (const group of groupNames) {
         const sources = CARBON_SOURCE_GROUPS[group] || [];
-        const value = calculateSAWCD(rec.ecoplate, sources);
+        let value;
+        if (type === 'sawcd') {
+          value = calculateSAWCD(rec.ecoplate, sources);
+        } else if (type === 'shannon') {
+          value = calculateShannonIndexForSubset(rec.ecoplate, sources);
+        } else {
+          value = calculateShannonEvennessForSubset(rec.ecoplate, sources);
+        }
         results.push({
           bacteria: rec.bacteria,
           stressor: rec.stressor,
@@ -227,10 +229,7 @@ function runTest(type) {
       }
     }
   } else {
-    const calcFn = type === 'awcd' ? calculateAWCD
-      : type === 'shannon' ? calculateShannonIndex
-      : calculateShannonEvenness;
-
+    // type === 'awcd' — whole-plate
     for (const rec of records) {
       results.push({
         bacteria: rec.bacteria,
@@ -239,7 +238,7 @@ function runTest(type) {
         time: rec.time,
         blank: rec.blank,
         repetition: rec.repetition,
-        value: calcFn(rec.ecoplate)
+        value: calculateAWCD(rec.ecoplate)
       });
     }
   }
@@ -256,6 +255,8 @@ function runTest(type) {
 
   if (type === 'sawcd') {
     renderSAWCDChart(canvas, results);
+  } else if (type === 'shannon' || type === 'evenness') {
+    renderPerGroupBarChart(canvas, results, type);
   } else {
     renderGroupedChart(canvas, results, type);
   }
@@ -269,10 +270,10 @@ function renderResultsTable(results, type) {
   const container = document.getElementById('tests-results');
   const label = typeLabel(type);
 
-  const isSawcd = type === 'sawcd';
+  const isPerGroup = type === 'sawcd' || type === 'shannon' || type === 'evenness';
   let html = '<table class="results-table"><thead><tr>';
   html += '<th>Bacteria</th><th>Stressor</th><th>Concentration</th><th>Time</th><th>Repetition</th>';
-  if (isSawcd) html += '<th>Category</th>';
+  if (isPerGroup) html += '<th>Category</th>';
   html += `<th>${escapeHtml(label)}</th>`;
   html += '</tr></thead><tbody>';
 
@@ -283,7 +284,7 @@ function renderResultsTable(results, type) {
     html += `<td>${r.blank ? 'Blank' : r.concentration}</td>`;
     html += `<td>${r.time}</td>`;
     html += `<td>${r.repetition}</td>`;
-    if (isSawcd) html += `<td>${escapeHtml(r.category)}</td>`;
+    if (isPerGroup) html += `<td>${escapeHtml(r.category)}</td>`;
     html += `<td>${r.value.toFixed(4)}</td>`;
     html += '</tr>';
   }
@@ -389,16 +390,50 @@ function renderSAWCDChart(canvas, results) {
   });
 }
 
+function renderPerGroupBarChart(canvas, results, type) {
+  // Group by (time, concentration) pairs, then by carbon group; values are averaged.
+  const pairMap = {};
+  for (const r of results) {
+    const concLabel = r.blank ? 'Blank' : String(r.concentration);
+    const timeLabel = String(r.time);
+    const pairKey = `${timeLabel} h\n${concLabel}`;
+    if (!pairMap[pairKey]) pairMap[pairKey] = {};
+    if (!pairMap[pairKey][r.category]) pairMap[pairKey][r.category] = [];
+    pairMap[pairKey][r.category].push(r.value);
+  }
+
+  const pairLabels = Object.keys(pairMap);
+  const allGroups = [...new Set(results.map(r => r.category))];
+  const label = typeLabel(type);
+
+  const datasets = allGroups.map(group => ({
+    label: group,
+    data: pairLabels.map(pair => {
+      const vals = pairMap[pair][group] || [0];
+      return vals.reduce((a, b) => a + b, 0) / vals.length;
+    })
+  }));
+
+  lastChartTitle = label;
+  renderGroupedBarChart(canvas, {
+    labels: pairLabels,
+    datasets,
+    xLabel: 'Time / Concentration',
+    yLabel: label,
+    title: label
+  });
+}
+
 /* ---------- CSV export ---------- */
 
 function handleSaveCsv() {
   if (lastResults.length === 0) return;
 
-  const isSawcd = lastTestType === 'sawcd';
+  const isPerGroup = lastTestType === 'sawcd' || lastTestType === 'shannon' || lastTestType === 'evenness';
   const label = typeLabel(lastTestType);
 
   const headers = ['Bacteria', 'Stressor', 'Concentration', 'Time', 'Blank', 'Repetition'];
-  if (isSawcd) headers.push('Category');
+  if (isPerGroup) headers.push('Category');
   headers.push(label);
 
   const rows = [headers.map(csvEscape).join(',')];
@@ -412,7 +447,7 @@ function handleSaveCsv() {
       r.blank ? 'Yes' : 'No',
       r.repetition
     ];
-    if (isSawcd) row.push(csvEscape(r.category));
+    if (isPerGroup) row.push(csvEscape(r.category));
     row.push(r.value.toFixed(4));
     rows.push(row.join(','));
   }
